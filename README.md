@@ -1,4 +1,6 @@
 # 19AI304-Fundamentals-of-C-Programming-2025-Odd-M4
+## NAME:SHAHANA.C
+## REFF NO:25017599
 # IAPR-4- Module 4 - FoC
 ## 7. Implementation of Functions.
 ## 8. Implementation of passing parameters.
@@ -41,7 +43,50 @@
 ### Step 14: 
   Stop
 # Program:
+#include <stdio.h>
+int valid()
+{
+    int d,m,y;
+    scanf("%d/%d/%d",&d,&m,&y);
+    if(y < 1000 || y > 9999)
+        return 1;
+    if(m < 1 || m > 12)
+        return 2;
+    int days;
+    if(m==1||m==3||m==5||m==7||m==8||m==10||m==12)
+    {
+        days=31;
+    }
+    else if(m==4||m==6||m==9||m==11)
+    {
+        days=30;
+    }
+    else
+    {
+        if(y%4==0||(y%100==0&&y%4!=0))
+        days=29;
+        else
+        days=28;
+    }
+    if(d<1||d>days)
+       return 3;
+return 0;
+}
+int main()
+{
+    int result=valid();
+    if(result==0)
+       printf("Day is valid.");
+    else if(result==1)
+        printf("Year is not valid.");
+    else if(result==2)
+        printf("Month is not valid.");
+    else
+        printf("Day is invalid.");
+}
 # Output:
+![WhatsApp Image 2025-12-31 at 6 55 39 PM](https://github.com/user-attachments/assets/ee15c817-daa0-4fa1-9a3f-25f46b2d4b61)
+
 # Result: 
 Thus, the program was implemented and executed successfully, and the required output was obtained.
 
@@ -89,7 +134,43 @@ Thus, the program was implemented and executed successfully, and the required ou
 ### Step 13: 
   Stop
 # Program:
+#include <stdio.h>
+
+int max(int num1, int num2);
+int min(int num1, int num2);
+
+int main() {
+    int num1, num2, maximum, minimum;
+
+    printf("Enter two numbers: ");
+    scanf("%d %d", &num1, &num2);
+
+    maximum = max(num1, num2);
+    minimum = min(num1, num2);
+
+    printf("Maximum = %d\n", maximum);
+    printf("Minimum = %d\n", minimum);
+
+    return 0;
+}
+
+int max(int num1, int num2) {
+    if (num1 > num2)
+        return num1;
+    else
+        return num2;
+}
+
+int min(int num1, int num2) {
+    if (num1 > num2)
+        return num2;
+    else
+        return num1;
+}
+
 # Output:
+![WhatsApp Image 2025-12-31 at 7 00 24 PM](https://github.com/user-attachments/assets/003c0487-a3af-4834-9259-f3d67adbd079)
+
 # Result: 
 Thus, the program was implemented and executed successfully, and the required output was obtained.
 
@@ -137,7 +218,46 @@ Thus, the program was implemented and executed successfully, and the required ou
 ### Step 11: 
  Stop
 # Program:
+#include <stdio.h>
+
+float celtof();
+float ftocel();
+
+int main() {
+    float fahrenheit, celsius;
+
+    fahrenheit = celtof();
+    printf("Temperature in Fahrenheit: %.2f\n", fahrenheit);
+
+    celsius = ftocel();
+    printf("Temperature in Celsius: %.2f\n", celsius);
+
+    return 0;
+}
+
+float celtof() {
+    float C, F;
+
+    printf("Enter the temperature in Celsius: ");
+    scanf("%f", &C);
+
+    F = (C * 9 / 5) + 32;
+    return F;
+}
+
+float ftocel() {
+    float f, celsius;
+
+    printf("Enter the temperature in Fahrenheit: ");
+    scanf("%f", &f);
+
+    celsius = (f - 32) * 5 / 9;
+    return celsius;
+}
+
 # Output:
+![WhatsApp Image 2025-12-31 at 7 02 53 PM](https://github.com/user-attachments/assets/41d36b69-6a19-4987-88ae-f813e8157142)
+
 # Result: 
 Thus, the program was implemented and executed successfully, and the required output was obtained.
 
@@ -185,7 +305,53 @@ Thus, the program was implemented and executed successfully, and the required ou
 ### Step 7: 
   Stop
 # Program:
+#include <stdio.h>
+
+#define R 4
+#define C 4
+
+void spiralPrint(int m, int n, int a[R][C]) {
+    int i, k = 0, l = 0;
+
+    while (k < m && l < n) {
+        for (i = l; i < n; i++)
+            printf("%d ", a[k][i]);
+        k++;
+
+        for (i = k; i < m; i++)
+            printf("%d ", a[i][n - 1]);
+        n--;
+
+        if (k < m) {
+            for (i = n - 1; i >= l; i--)
+                printf("%d ", a[m - 1][i]);
+            m--;
+        }
+
+        if (l < n) {
+            for (i = m - 1; i >= k; i--)
+                printf("%d ", a[i][l]);
+            l++;
+        }
+    }
+}
+
+int main() {
+    int a[R][C] = {
+        {1, 2, 3, 4},
+        {5, 6, 7, 8},
+        {9, 10, 11, 12},
+        {13, 14, 15, 16}
+    };
+
+    spiralPrint(R, C, a);
+
+    return 0;
+}
+
 # Output:
+![WhatsApp Image 2025-12-31 at 7 04 28 PM](https://github.com/user-attachments/assets/5c2954c1-6108-472b-beed-8f82ef3a6147)
+
 # Result: 
 Thus, the program was implemented and executed successfully, and the required output was obtained.
 
@@ -220,7 +386,29 @@ To build a C program to convert a string as described above, using a user-define
 ### Step 6: 
  Stop
 # Program:
+#include<stdio.h>
+#include<string.h>
+#include<ctype.h>
+int main()
+{
+    char str[30];
+    
+    scanf("%[^\n]",str);
+    int i=0;
+    for(i=0;i<strlen(str);i++)
+    {
+    if(i==0 || str[i-1]==' ')
+    {
+        str[i]=toupper(str[i]);
+    }
+    else if(str[i+1]==' ' || str[i+1]=='\0')
+        str[i]=toupper(str[i]);
+    }
+    printf("After Converting String is:%s",str);
+}
 # Output:
+![WhatsApp Image 2025-12-31 at 7 11 17 PM](https://github.com/user-attachments/assets/c917cbc7-094b-4dec-95a5-aaa4dbccc696)
+
 # Result: 
 Thus, the program was implemented and executed successfully, and the required output was obtained.
 
